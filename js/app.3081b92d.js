@@ -343,7 +343,7 @@
                 }
             }, T = C, y = (n("cd7d"), n("4081"), Object(u["a"])(T, S, k, !1, null, "684e1917", null)), R = y.exports,
             O = n("bc3a"), L = n.n(O), j = L.a.create({
-                baseURL: "http://localhost:8080/api/",
+                baseURL: "http://localhost:3081/api/",
                 headers: {"Content-Type": "application/json", Authorization: "Token ".concat(localStorage.token)}
             }), E = {
                 name: "Subjects", components: {SquareTemplates: R}, data: function () {
@@ -412,7 +412,7 @@
                             return regeneratorRuntime.wrap((function (n) {
                                 while (1) switch (n.prev = n.next) {
                                     case 0:
-                                        e.preventDefault(), L.a.post("http://localhost:8080/api/" + t.$getConst("LOGIN_URL")(), t.form).then((function (e) {
+                                        e.preventDefault(), L.a.post("http://localhost:3081/api/" + t.$getConst("LOGIN_URL")(), t.form).then((function (e) {
                                             localStorage.setItem("token", e.data.token), localStorage.setItem("username", e.data.email), localStorage.setItem("role", e.data.role), localStorage.setItem("is_superuser", e.data.is_superuser), t.$root.username = e.data.email, t.$emit.username = e.data.email, t.$root.is_superuser = e.data.is_superuser, t.$emit.is_superuser = e.data.is_superuser, t.$root.role = e.data.role, t.$emit.role = e.data.role, window.location.pathname = "/subjects"
                                         }), (function (e) {
                                             return s["default"].$toast.error("Логин или пароль введены неверно")
@@ -768,7 +768,7 @@
                                         }
                                         return alert("Заполните группу (потом обработаю ошибку нормально)"), n.abrupt("return");
                                     case 4:
-                                        return n.prev = 4, n.next = 7, L.a.post("http://localhost:8080/api/" + t.$getConst("REGISTER_URL")(), t.form);
+                                        return n.prev = 4, n.next = 7, L.a.post("http://localhost:3081/api/" + t.$getConst("REGISTER_URL")(), t.form);
                                     case 7:
                                         n.sent, t.$router.push({name: "login"}), n.next = 14;
                                         break;
@@ -787,7 +787,7 @@
                             return regeneratorRuntime.wrap((function (t) {
                                 while (1) switch (t.prev = t.next) {
                                     case 0:
-                                        return t.prev = 0, t.next = 3, L.a.get("http://localhost:8080/api/" + e.$getConst("GROUPS_URL")());
+                                        return t.prev = 0, t.next = 3, L.a.get("http://localhost:3081/api/" + e.$getConst("GROUPS_URL")());
                                     case 3:
                                         n = t.sent, n.data.map((function (t) {
                                             return e.groups.push({value: t.id, text: t.name})
@@ -1365,7 +1365,7 @@
             }, Ee = je, $e = (n("ecf3"), Object(u["a"])(Ee, ge, we, !1, null, null, null)), De = $e.exports,
             Ue = function () {
                 var e = this, t = e.$createElement, n = e._self._c || t;
-                return e.isStarted ? e.isEnded ? n("div", {staticClass: "s2"}, [n("h2", [e._v("Тест закончен")]), e._v(" "), n("h3", [e._v("Ваша оценка за тест: " + e._s(e.mark))])]) : n("div", {staticClass: "s3"}, [n("h1", [e._v('Тест "' + e._s(e.testName) + '"')]), n("b-form", [n("div", {
+                return e.isStarted ? e.isEnded ? n("div", {staticClass: "s2"}, [n("h2", [e._v("Тест закончен")]), e._v(" "), n("h3", [e._v("Ваша оценка за тест: " + (e.mark != -1 ? e._s(e.mark): "Будет определён преподавателем"))])]) : n("div", {staticClass: "s3"}, [n("h1", [e._v('Тест "' + e._s(e.testName) + '"')]), n("b-form", [n("div", {
                     staticClass: "circle timer",
                     class: {"with-hours": e.estimatedTime > 3600}
                 }, [n("vue-countdown-timer", {
@@ -1398,7 +1398,7 @@
                         }
                     }, [t.image ? n("div", [n("b-img", {
                         staticClass: "mb-2",
-                        attrs: {src: "http://localhost:8080" + t.image, fluid: ""}
+                        attrs: {src: "http://localhost:3081" + t.image, fluid: ""}
                     })], 1) : e._e(), n("b-form-checkbox-group", {
                         staticClass: "mb-3 inline mt-2",
                         attrs: {options: t.answers, "value-field": "answer", "text-field": "answer"},
@@ -1468,9 +1468,8 @@
                                             var authHeader = r.config.headers.Authorization;
                                             if (authHeader) {
                                                var authToken = authHeader.split(" ")[1];
-                                               window.open("http://localhost:3080?auth=" + encodeURIComponent(authToken), '_blank');
+                                               window.open("http://localhost:3080/?auth=" + encodeURIComponent(authToken), '_blank');
                                             }
-                                            return;
                                         }
 
                                         a = localStorage["isStartedTest_".concat(n)] ? JSON.parse(localStorage["isStartedTest_".concat(n)]) : [], r.data.questions.forEach((function (t) {
@@ -1687,7 +1686,7 @@
             }, Be = Fe, Je = (n("4191"), Object(u["a"])(Be, Me, ze, !1, null, null, null)), Ve = Je.exports,
             He = function () {
                 var e = this, t = e.$createElement, n = e._self._c || t;
-                return n("div", {staticClass: "s3"}, [n("h1", [e._v('Результат теста "' + e._s(e.test.name) + '" ')]), n("h3", [e._v("Ваша оценка за тест: " + e._s(e.mark))]), e._v(" "), n("br"), n("p", {staticClass: "right-a mr-2"}, [e._v("Ответ выбран верно")]), n("p", {staticClass: "inc-a mr-2"}, [e._v(" Ответ выбран не верно")]), n("p", {staticClass: "cor-a"}, [e._v(" Верный ответ")]), n("b-form", [n("b-container", {attrs: {fuid: ""}}, e._l(e.test.questions, (function (t, s) {
+                return n("div", {staticClass: "s3"}, [n("h1", [e._v('Результат теста "' + e._s(e.test.name) + '" ')]), n("h3", [e._v("Ваша оценка за тест: " + (e.mark != -1 ? e._s(e.mark): "Будет определён преподавателем"))]), e._v(" "), n("br"), n("p", {staticClass: "right-a mr-2"}, [e._v("Ответ выбран верно")]), n("p", {staticClass: "inc-a mr-2"}, [e._v(" Ответ выбран не верно")]), n("p", {staticClass: "cor-a"}, [e._v(" Верный ответ")]), n("b-form", [n("b-container", {attrs: {fuid: ""}}, e._l(e.test.questions, (function (t, s) {
                     return n("b-form-group", {
                         key: t.id,
                         staticClass: "mb-5",
@@ -1699,7 +1698,7 @@
                         }
                     }, [t.image ? n("div", [n("b-img", {
                         staticClass: "mb-2",
-                        attrs: {src: "http://localhost:8080" + t.image, fluid: ""}
+                        attrs: {src: "http://localhost:3081" + t.image, fluid: ""}
                     })], 1) : e._e(), n("b-row", e._l(t.answers_res, (function (t) {
                         return n("b-col", {
                             key: t.id,
@@ -1760,6 +1759,15 @@
                                                 if (e.is_checked) return e.answer
                                             })))
                                         })), t.next = 16;
+
+                                        if (r.data.mark == -1) {
+                                            var authHeader = r.config.headers.Authorization;
+                                            if (authHeader) {
+                                                var authToken = authHeader.split(" ")[1];
+                                                window.open("http://localhost:3080/?auth=" + encodeURIComponent(authToken), '_blank');
+                                            }
+                                        }
+
                                         break;
                                     case 13:
                                         t.prev = 13, t.t0 = t["catch"](2), s["default"].$toast.error(t.t0);
